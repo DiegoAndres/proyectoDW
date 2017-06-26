@@ -1,8 +1,8 @@
 from django import forms
-from .models import Cliente
+from .models import Pedido
 
 
-class ClienteForm ( forms.ModelForm ):
+class PedidoForm ( forms.ModelForm ):
     """
         Formulario de Cliente
     """
@@ -10,5 +10,5 @@ class ClienteForm ( forms.ModelForm ):
     # nombre            = forms.CharField( required = True, label = "Nombre", widget = forms.TextInput( attrs = {"class" : "form-control"} ) )
 
     class Meta:
-        model  = Cliente
+        model  = Pedido
         fields = '__all__'
