@@ -17,8 +17,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from users import views
-from django.conf import settings
-from django.conf.urls.static import static
 admin.autodiscover()
 
 urlpatterns = [
@@ -26,5 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls')),
     url(r'^clientes/', include('clientes.urls')),
-
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+    url(r'^pedidos/', include('pedidos.urls')),
+]

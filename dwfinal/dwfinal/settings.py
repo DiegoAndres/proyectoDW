@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'users',
     'clientes',
-    'sorl.thumbnail'
+    'pedidos'
 ]
 
 MIDDLEWARE = [
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'es-cl'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -123,9 +123,6 @@ LOGIN_URL = '/users/login/'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
