@@ -13,7 +13,8 @@
 		<div class="col-lg-7">
 			<h3>Clientes</h3>
 			{% if clientes %}
-			<table class="table table-hover">
+			<button type="button" id="ocultar" class="btn btn-xs btn-default">Ocultar Tabla</button>
+			<table class="table table-hover" id="tabla">
 				<thead>
 					<tr>
 						<th>Nombre</th>
@@ -53,4 +54,16 @@
 	</div>
 {% endblock %}
 {% block js_lib %}
+<script>
+		$('#ocultar').click(function(){
+			if ($(this).text() == 'Mostrar Tabla'){
+				$(this).text('Ocultar Tabla');
+				$('#tabla').show();
+
+			}else{
+				$(this).text('Mostrar Tabla');
+				$('#tabla').hide();
+			}
+		});
+</script>
 {% endblock %}
