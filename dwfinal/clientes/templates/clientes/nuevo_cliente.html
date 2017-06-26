@@ -1,5 +1,7 @@
 {% extends "users/base.html" %}
 {% load bootstrap3 %}
+{% load thumbnail %}
+{% load staticfiles%}
 {% block title %}
     Nuevo Cliente
 {% endblock %}
@@ -7,9 +9,41 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Nuevo Cliente</h2>
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-7">
+			<h3>Clientes</h3>
+			{% if clientes %}
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Telefono</th>
+						<th>Correo</th>
+						<th>Foto</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for c in clientes %}
+					<tr>
+						<td>{{c.nombre}}</td>
+						<td>{{c.telefono}}</td>
+						<td>{{c.correo}}</td>
+						<td>{% thumbnail  c.foto "70x70" crop="center" as im %}
+					            <img src="{{ im.url }}" alt = "" class="img-responsive img-thumbnail pull-left img-margin-right">
+					        {% empty %}
+					            <img src="http://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
+					        {% endthumbnail %}
+					    </td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% else %}
+				No existen clientes creados
+			{% endif %}
+		</div>
+		<div class="col-lg-4 col-lg-offset-1">
+			<h3>Nuevo Pedido</h3>
 			<form action="." method="POST">
 				{% csrf_token %}
 				{% bootstrap_form form %}

@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
 from django.contrib import messages
 from .forms import ClienteForm
-from users import views
 from clientes.models import Cliente
 
 
@@ -15,12 +13,17 @@ def nuevo_cliente_view(request):
     if request.POST:
         form = ClienteForm(request.POST)
         if form.is_valid():
-            form.save()
+            foto = request.POST.get('foto')
+            cl = form.save()
+            cl.foto = foto
+            cl.save()
             messages.success( request, 'Cliente creado correctamente.' )
-            return redirect( reverse( views.index ) )
-    else:
-        form = ClienteForm()
-    return render(request, 'clientes/nuevo_cliente.html', {'form' : form})
+    clientes = Cliente.objects.all()
+    form = ClienteForm()
+    return render(request, 'clientes/nuevo_cliente.html', {
+        'form' : form,
+        'clientes' : clientes,
+        })
 
 
 @login_required

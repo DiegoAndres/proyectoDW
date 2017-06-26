@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'users',
     'clientes',
-    'pedidos'
+    'pedidos',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -124,11 +125,15 @@ LOGIN_URL = '/users/login/'
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
 STATIC_ROOT = os.path.abspath( os.path.join( BASE_DIR, '..', 'static' ) )
+
+MEDIA_ROOT = os.path.abspath( os.path.join( BASE_DIR, '..', 'media' ) )
 
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
